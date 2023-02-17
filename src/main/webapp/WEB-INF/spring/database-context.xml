@@ -3,17 +3,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- property 파일을 읽어오는 객체 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+		<property name="location" value="classpath:database/info/dbInfo.properties"></property>
+	</bean>
 
-
-
-
-	<!-- Connection -->
+	<!-- DB Connection -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="user01"></property>
-		<property name="password" value="user01"></property>
-		<!-- !내 ip를 써야한다. -->
-		<property name="url" value="jdbc:oracle:thin:@192.168.1.95:1521:xe"></property>
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		<!-- !ip 변경은 dbInfo.properties에서 -->
+		<property name="url" value="url"></property>
+		<property name="driverClassName" value="${driver}"></property>
+	</bean>
+	
+	<!-- DB-Mapper 연결 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:database/config/MybatisConfig.xml"></property>
+		<property name="mapperLocations" value="classpath:database/mappers/*Mapper.xml"></property>
 	</bean>
 	
 	<!-- sqlSession -->
