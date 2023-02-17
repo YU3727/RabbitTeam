@@ -13,7 +13,7 @@
 		<property name="username" value="${username}"></property>
 		<property name="password" value="${password}"></property>
 		<!-- !ip 변경은 dbInfo.properties에서 -->
-		<property name="url" value="url"></property>
+		<property name="url" value="${url}"></property>
 		<property name="driverClassName" value="${driver}"></property>
 	</bean>
 	
