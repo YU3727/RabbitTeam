@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="SampleMapper">
-  	<select id="getNoticeList" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE
-  	</select>
-  	
-  	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE WHERE NOTICENUM = #{noticeNum}
-  	</select>
-  </mapper>
+<mapper namespace="com.rabbit.s1.notice.NoticeDAO">
+	<select id="getNoticeList" resultType="NoticeDTO">
+		SELECT * FROM NOTICE ORDER BY NOTICENUM DESC
+	</select>
+	  	
+	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+		SELECT * FROM NOTICE WHERE NOTICENUM=#{noticeNum}
+	</select>
+	  	
+	<insert id="setNoticeAdd" parameterType="NoticeDTO">
+		<selectKey keyProperty="noticeNum" order="BEFORE" resultType="Long">
+			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICE(NOTICENUM, NOTICETITLE, NOTICEDETAIL, NOTICEWRITER, NOTICEDATE, NOTICEHITS)
+		VALUES(#{noticeNum}, #{noticeTitle}, #{noticeDetail}, #{noticeWriter}, sysdate, 0)
+	</insert>
+	
+	<update id="setNoticeUpdate" parameterType="NoticeDTO">
+		UPDATE NOTICE
+		SET NOTICETITLE=#{noticeTitle}, NOTICEDETAIL=#{noticeDetail}, NOTICEWRITER=#{noticeWriter}
+		WHERE NOTICENUM=#{noticeNum}
+	</update>
+	
+	<delete id="setNoticeDelete" parameterType="NoticeDTO">
+		DELETE NOTICE WHERE NOTICENUM=#{noticeNum}
+	</delete>
+</mapper>

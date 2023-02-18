@@ -26,5 +26,11 @@ public class NoticeDAO {
 		return sqlSession.insert(NAMESPACE+"setNoticeAdd", noticeDTO);
 	}
 	
+	public int setNoticeUpdate(NoticeDTO noticeDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setNoticeUpdate", noticeDTO);
+	}
 	
+	public int setNoticeDelete(NoticeDTO noticeDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setNoticeDelete", noticeDTO);
+	}
 }
