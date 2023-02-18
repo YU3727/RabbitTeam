@@ -7,6 +7,8 @@
 <body>
 <h1>
 	Hello world!  
+	<hr>
+	<h1><a href="./notice/list">Notice List Page</a></h1>
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
