@@ -3,11 +3,13 @@ package com.rabbit.s1.notice;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rabbit.s1.TestDefaultSet;
+import com.rabbit.s1.util.Pagination;
 
 public class NoticeDAOTest extends TestDefaultSet{
 	
@@ -15,8 +17,8 @@ public class NoticeDAOTest extends TestDefaultSet{
 	private NoticeDAO noticeDAO;
 	
 //	@Test
-	public void getNoticeListTest() throws Exception{
-		List<NoticeDTO> ar = noticeDAO.getNoticeList();
+	public void getNoticeListTest(Pagination pagination) throws Exception{
+		List<NoticeDTO> ar = noticeDAO.getNoticeList(pagination);
 		assertNotEquals(0, ar.size());
 	}
 	
@@ -30,12 +32,18 @@ public class NoticeDAOTest extends TestDefaultSet{
 	
 //	@Test
 	public void setNoticeAddTest() throws Exception{
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNoticeTitle("testTitle1");
-		noticeDTO.setNoticeDetail("testDetail1");
-		noticeDTO.setNoticeWriter("testWriter1");
-		int result = noticeDAO.setNoticeAdd(noticeDTO);
-		assertNotEquals(0, result);
+		for(int i=1; i<=50; i++) {
+			NoticeDTO noticeDTO = new NoticeDTO();
+			Random r = new Random();
+			double d = r.nextDouble();
+			int num = (int)(d*1000);
+			d = num/100.0;
+			noticeDTO.setNoticeTitle("testTitle"+i);
+			noticeDTO.setNoticeDetail("testDetail"+d);
+			noticeDTO.setNoticeWriter("testWriter"+i);
+			int result = noticeDAO.setNoticeAdd(noticeDTO);
+//			assertNotEquals(0, result);
+		}
 	}
 	
 //	@Test

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice Detail</title>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<h1>Notice Detail Page</h1>
@@ -24,5 +25,6 @@
 	<button onclick="javaScript:location.href='./delete?noticeNum=${dto.noticeNum}'">삭제하기</button>
 	<button onclick="javaScript:location.href='./list'">돌아가기</button>
 	
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

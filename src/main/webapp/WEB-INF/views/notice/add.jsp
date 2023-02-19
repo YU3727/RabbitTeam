@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice Add</title>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<h1>Notice Add Page</h1>
@@ -29,6 +30,7 @@
 	</form>
 		<button onclick="javaScript:location.href='./list'">돌아가기</button>
 	<!-- <a href="./list">돌아가기</a> -->
-
+	
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

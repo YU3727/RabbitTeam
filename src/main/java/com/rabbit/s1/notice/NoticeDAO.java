@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.rabbit.s1.util.Pagination;
+
 @Repository
 public class NoticeDAO {
 
@@ -14,8 +16,12 @@ public class NoticeDAO {
 	private final String NAMESPACE = "com.rabbit.s1.notice.NoticeDAO.";
 	
 	
-	public List<NoticeDTO> getNoticeList() throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getNoticeList");
+	public Long getNoticeCount(Pagination pagination) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getNoticeCount", pagination);
+	}
+	
+	public List<NoticeDTO> getNoticeList(Pagination pagination) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getNoticeList", pagination);
 	}
 	
 	public NoticeDTO getNoticeDetail(NoticeDTO noticeDTO) throws Exception{

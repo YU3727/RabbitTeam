@@ -7,5 +7,6 @@
 	<typeAliases>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.rabbit.s1.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.rabbit.s1.util.Pagination" alias="Pagination"/>
 	</typeAliases>
   </configuration>

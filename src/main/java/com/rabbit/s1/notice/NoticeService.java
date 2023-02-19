@@ -5,14 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rabbit.s1.util.Pagination;
+
 @Service
 public class NoticeService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	public List<NoticeDTO> getNoticeList() throws Exception{
-		List<NoticeDTO> ar = noticeDAO.getNoticeList();
+	public List<NoticeDTO> getNoticeList(Pagination pagination) throws Exception{
+		Long totalCount = noticeDAO.getNoticeCount(pagination);
+		pagination.makeNum(totalCount);
+		pagination.makeRow();
+		List<NoticeDTO> ar = noticeDAO.getNoticeList(pagination);
 		return ar;
 	}
 	

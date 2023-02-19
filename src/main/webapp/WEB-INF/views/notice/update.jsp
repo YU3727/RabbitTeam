@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice Update</title>
+	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 	<h1>Notice Update Page</h1>
@@ -41,5 +42,6 @@
 		<button onclick="javaScript:location.href='./list'">돌아가기</button>
 		<%-- <button onclick="javaScript:location.href='./detail?noticeNum=${dto.noticeNum}'">돌아가기</button> --%>
 	
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>
