@@ -22,6 +22,10 @@ public class Pagination {
 	private boolean before;
 	private boolean after;
 	
+	//검색방법와 검색어
+	private String kind;
+	private String search;
+	
 	public Pagination() {}
 	
 	//start/lastRow 계산 메서드

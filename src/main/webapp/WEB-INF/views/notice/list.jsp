@@ -38,7 +38,7 @@
 		</tbody>
 	</table>
 	
-	<!-- Pagination -->
+	<!-- pagination -->
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination">
 	  
@@ -73,7 +73,26 @@
 	  </ul>
 	</nav>
 	
+	<!-- search -->
+	<form class=""row g-3" action="./list" method="get">
+		<div class="col-auto">
+			<label for="kind" class="visually-hidden">Kind</label>
+			<select class="form-select" name="kind" id="kind" aria-label="Default select example">
+				<option value="title" selected>글제목</option>
+				<option value="contents">글내용</option>
+				<option value="writer">작성자</option>
+			</select>
+		</div>
+		<div class="col-auto">
+			<label for="search" class="visually-hidden">Search</label>
+			<input type="text" class="form-control" name="search" value="" id="search" placeholder="검색어를 입력하세요">
+		</div>
+		<div class="col-auto">
+			<button type="submit" class="btn btn-primary mb-3">검색</button>
+		</div>
+	</form>
 	
+	<!-- button -->
 	<button onclick="javaScript:location.href='./add'">공지등록</button>
 	<button onclick="javaScript:location.href='../'">돌아가기</button>
 	<!-- <a href="./add">공지 등록</a> -->
