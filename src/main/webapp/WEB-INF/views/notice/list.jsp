@@ -18,11 +18,11 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<th>글번호</th>
-				<th>글제목</th>
-				<th>작성자</th>
-				<th>작성날짜></th>
-				<th>조회수</th>
+				<th>글번호 </th>
+				<th>글제목 </th>
+				<th>작성자 </th>
+				<th>작성날짜 </th>
+				<th>조회수 </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,30 +43,30 @@
 	  <ul class="pagination">
 	  
 	  	<li class="page-item">
-	      <a class="page-link" href="./list?page=1" aria-label="Previous">
+	      <a class="page-link" href="./list?page=1&kind=${page.kind}&search=${page.search}" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
 	  
 	    <li class="page-item ${page.before eq true ? 'disabled':''}">
-	      <a class="page-link" href="./list?page=${page.startNum-1}" aria-label="Previous">
+	      <a class="page-link" href="./list?page=${page.startNum-1}&kind=${page.kind}&search=${page.search}" aria-label="Previous">
 	        <span aria-hidden="true">&lsaquo;</span>
 	      </a>
 	    </li>
 	    
 	    <!-- perPage 개수만큼 반복문 -->
 	    <c:forEach begin="${page.startNum}" end="${page.lastNum}" step="1" var="i">
-	    	<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+	    	<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${page.kind}&search=${page.search}">${i}</a></li>
 	    </c:forEach>
 	    
 	    <li class="page-item ${page.after ? 'disabled':''}">
-	      <a class="page-link" href="./list?page=${page.lastNum+1}" aria-label="Next">
+	      <a class="page-link" href="./list?page=${page.lastNum+1}&kind=${page.kind}&search=${page.search}" aria-label="Next">
 	        <span aria-hidden="true">&rsaquo;</span>
 	      </a>
 	    </li>
 	    
 	    <li class="page-item">
-	      <a class="page-link" href="./list?page=${pagination.totalPage}" aria-label="Next">
+	      <a class="page-link" href="./list?page=${page.totalPage}&kind=${page.kind}&search=${page.search}" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>

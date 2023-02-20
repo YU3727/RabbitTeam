@@ -5,9 +5,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.rabbit.s1.notice.NoticeDAO">
 	
+	<sql id="searchCondition">
+		<if test="kind == 'contents'">
+			WHERE NOTICEDETAIL LIKE '%' || #{search} || '%'
+		</if>
+		<if test="kind == 'title'">
+			WHERE NOTICETITLE LIKE '%' || #{search} || '%'
+		</if>
+		<if test="kind == 'writer'">
+			WHERE NOTICEWRITER LIKE '%' || #{search} || '%'
+		</if>
+	</sql>
 	
 	<select id="getNoticeCount" parameterType="Pagination" resultType="Long">
 		SELECT COUNT(NOTICENUM) FROM NOTICE
+		<include refid="searchCondition"></include>
 	</select>
 		
 	<select id="getNoticeList" resultType="NoticeDTO" parameterType="Pagination">
@@ -16,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(
 			SELECT ROWNUM R, N.* FROM
 				(SELECT * FROM NOTICE
+				<include refid="searchCondition"></include>
 				ORDER BY NOTICENUM DESC) N)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
