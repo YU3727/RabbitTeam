@@ -25,6 +25,9 @@
 		<textarea rows="12" cols="20" name="noticeDetail" id="detail"></textarea>
 		<br>
 		<!-- <input type="text" name="noticeDetail" id="detail" placeholder="글내용을 입력하세요"> -->
+		
+		<!-- 파일 추가, name = file임을 기억. Controller의 MultipartFile의 매개변수 이름도 file로 입력 -->
+		<input type="file" class="form-control" id="files" name="file">
 	
 		<button type="submit" value="등록">공지등록</button>
 	</form>

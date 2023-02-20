@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rabbit.s1.util.Pagination;
 
@@ -25,7 +26,7 @@ public class NoticeService {
 		return noticeDAO.getNoticeDetail(noticeDTO);
 	}
 	
-	public int setNoticeAdd(NoticeDTO noticeDTO) throws Exception{
+	public int setNoticeAdd(NoticeDTO noticeDTO, MultipartFile file) throws Exception{
 		return noticeDAO.setNoticeAdd(noticeDTO);
 	}
 	
