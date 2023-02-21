@@ -12,12 +12,16 @@
 	<h1>Notice Detail Page</h1>
 	<hr>
 	
-	<h2>글번호 : ${dto.noticeNum}</h2>
-	<h2>글제목 : ${dto.noticeTitle}</h2>
-	<h2>작성자 : ${dto.noticeWriter}</h2>
-	<h2>작성날짜 : ${dto.noticeDate}</h2>
-	<h2>조회수 : ${dto.noticeHits}</h2>
-	<h2>글내용 : ${dto.noticeDetail}</h2>
+	<h3>글번호 : ${dto.noticeNum}</h3>
+	<h3>글제목 : ${dto.noticeTitle}</h3>
+	<h3>작성자 : ${dto.noticeWriter}</h3>
+	<h3>작성날짜 : ${dto.noticeDate}</h3>
+	<h3>조회수 : ${dto.noticeHits}</h3>
+	<h3>글내용 : ${dto.noticeDetail}</h3>
+	<!-- fileDTO가 있는경우에만 출력 -->
+	<c:if test="${not empty dto.noticeFileDTO}">
+		<h3>첨부파일 : <a href="../resources/upload/notice/${dto.noticeFileDTO.fileName}">확인하기</a></h3>
+	</c:if>
 	<hr>
 	
 	<%-- <a href="./update?noticeNum=${dto.noticeNum}">수정하기</a> --%>

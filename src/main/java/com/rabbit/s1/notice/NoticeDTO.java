@@ -10,12 +10,23 @@ public class NoticeDTO {
 	private String noticeWriter;
 	private Date noticeDate;
 	private Long noticeHits;
+	//Notice는 첨부파일을 가진다.(has관계)
+	private NoticeFileDTO noticeFileDTO;
 	
 	public NoticeDTO() {
 		
 	}
 	
 	
+
+	public NoticeFileDTO getNoticeFileDTO() {
+		return noticeFileDTO;
+	}
+
+	public void setNoticeFileDTO(NoticeFileDTO noticeFileDTO) {
+		this.noticeFileDTO = noticeFileDTO;
+	}
+
 	public Long getNoticeNum() {
 		return noticeNum;
 	}

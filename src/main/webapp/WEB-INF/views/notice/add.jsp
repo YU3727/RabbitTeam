@@ -12,7 +12,7 @@
 	<h1>Notice Add Page</h1>
 	<hr>
 	
-	<form action="./add" method="post">
+	<form action="./add" method="post" enctype="multipart/form-data">
 		<label for="title">글제목</label>
 		<input type="text" name="noticeTitle" id="title" placeholder="글제목을 입력하세요">
 		<br>
