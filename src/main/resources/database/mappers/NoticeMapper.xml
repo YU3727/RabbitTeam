@@ -6,30 +6,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.rabbit.s1.notice.NoticeDAO">
 	
 	<sql id="searchCondition">
-		<if test="kind == 'contents'">
-			WHERE NOTICEDETAIL LIKE '%' || #{search} || '%'
+		<if test="kind=='title'">
+			WHERE TITLE LIKE '%' || #{search} || '%'
 		</if>
-		<if test="kind == 'title'">
-			WHERE NOTICETITLE LIKE '%' || #{search} || '%'
+		<if test="kind=='contents'">
+			WHERE CONTENTS LIKE '%' || #{search} || '%'
 		</if>
-		<if test="kind == 'writer'">
-			WHERE NOTICEWRITER LIKE '%' || #{search} || '%'
+		<if test="kind=='writer'">
+			WHERE WRITER LIKE '%' || #{search} || '%'
 		</if>
 	</sql>
 	
 	<select id="getNoticeCount" parameterType="Pagination" resultType="Long">
-		SELECT COUNT(NOTICENUM) FROM NOTICE
+		SELECT COUNT(NUM) FROM NOTICE
 		<include refid="searchCondition"></include>
 	</select>
 		
 	<select id="getNoticeList" resultType="NoticeDTO" parameterType="Pagination">
-		<!-- SELECT * FROM NOTICE ORDER BY NOTICENUM DESC -->
+		<!-- SELECT * FROM NOTICE ORDER BY NUM DESC -->
 		SELECT * FROM
 			(
 			SELECT ROWNUM R, N.* FROM
-				(SELECT * FROM NOTICE
+				(SELECT NUM, TITLE, WRITER, REGDATE, HIT FROM NOTICE
 				<include refid="searchCondition"></include>
-				ORDER BY NOTICENUM DESC) N)
+				ORDER BY NUM DESC) N)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
@@ -37,57 +37,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- fileDTO를 포함하는 쿼리문이 필요. resultType은 한가지만 가능한데 noticeDTO, noticeFileDTO 둘 다 찾아야함 -->
 	<!-- fileDTO를 DTO의 멤버변수로 선언하고 mybatis 규칙에 의해 쿼리문은 resultMap으로 수동 Mapping 해준다(setter의 이름이 column명과 같을수없음) -->
 	<select id="getNoticeDetail" parameterType="NoticeDTO" resultMap="noticeDetailResult">
-		<!-- SELECT * FROM NOTICE WHERE NOTICENUM=#{noticeNum} -->
+		<!-- SELECT * FROM NOTICE WHERE NUM=#{num} -->
 		<!-- 데이터가 있는쪽의 방향으로 JOIN해야함 -->
 		SELECT N.*, F.*
 		FROM NOTICE N
 			LEFT OUTER JOIN
-			NOTICEFILE F
-			ON(N.NOTICENUM = F.NOTICENUM)
-		WHERE N.NOTICENUM = #{noticeNum}
+			NOTICEFILES F
+			ON(N.NUM = F.NUM)
+		WHERE N.NUM=#{num}
 	</select>
 	
 	<!-- type : 최종 리턴타입, id : 연결할 쿼리 -->
 	<resultMap type="NoticeDTO" id="noticeDetailResult">
 		<!-- 태그: id = PK column / result = 나머지 column -->
 		<!-- 속성: column = table의 column명 / property = DTO의 setter이름 -->
-		<id column="NOTICENUM" property="noticeNum"/>
-		<result column="NOTICETITLE" property="noticeTitle"/>
-		<result column="NOTICEDETAIL" property="noticeDetail"/>
-		<result column="NOTICEWRITER" property="noticeWriter"/>
-		<result column="NOTICEDATE" property="noticeDate"/>
-		<result column="NOTICEHITS" property="noticeHits"/>
+		<id column="NUM" property="num"/>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="WRITER" property="writer"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="HIT" property="hit"/>
 		
 		<!-- DTO-FileDTO는 1:1관계로, property는 resultMap에 type의 setter이름(멤버변수명), javaType에는 풀패키지명 -->
 		<association property="noticeFileDTO" javaType="NoticeFileDTO">
 			<id column="FILENUM" property="fileNum"/>
 			<result column="FILENAME" property="fileName"/>
-			<result column="ORIGINALNAME" property="originalName"/>
+			<result column="ORINAME" property="oriName"/>
 			<!-- 중복컬럼 NOTICENUM은 생략가능 -->
-			<result column="NOTICENUM" property="noticeNum"/>	
+			<result column="NUM" property="num"/>	
 		</association>
 	</resultMap>
 	
 	<insert id="setNoticeAdd" parameterType="NoticeDTO">
-		<selectKey keyProperty="noticeNum" order="BEFORE" resultType="Long">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
 			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-		INSERT INTO NOTICE(NOTICENUM, NOTICETITLE, NOTICEDETAIL, NOTICEWRITER, NOTICEDATE, NOTICEHITS)
-		VALUES(#{noticeNum}, #{noticeTitle}, #{noticeDetail}, #{noticeWriter}, sysdate, 0)
+		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT)
+		VALUES(#{num}, #{Title}, #{contents}, #{writer}, sysdate, 0)
 	</insert>
 	
 	<update id="setNoticeUpdate" parameterType="NoticeDTO">
 		UPDATE NOTICE
-		SET NOTICETITLE=#{noticeTitle}, NOTICEDETAIL=#{noticeDetail}, NOTICEWRITER=#{noticeWriter}
-		WHERE NOTICENUM=#{noticeNum}
+		SET TITLE=#{title}, CONTENTS=#{contents}, WRITER=#{writer}
+		WHERE NUM=#{num}
 	</update>
 	
 	<delete id="setNoticeDelete" parameterType="NoticeDTO">
-		DELETE NOTICE WHERE NOTICENUM=#{noticeNum}
+		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
 	
 	<insert id="setNoticeFileAdd" parameterType="NoticeFileDTO">
-		INSERT INTO NOTICEFILE 
-		VALUES(NOTICEFILE_SEQ.NEXTVAL, #{noticeNum}, #{fileName}, #{originalName})
+		INSERT INTO NOTICEFILES 
+		VALUES(NOTICEFILES_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
 	</insert>
 </mapper>

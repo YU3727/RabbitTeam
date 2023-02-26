@@ -25,7 +25,7 @@ public class NoticeDAOTest extends TestDefaultSet{
 //	@Test
 	public void getNoticeDetailTest() throws Exception{
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNoticeNum(1L);
+		noticeDTO.setNum(1L);
 		noticeDTO = noticeDAO.getNoticeDetail(noticeDTO);
 		assertNotNull(noticeDTO);
 	}
@@ -38,9 +38,9 @@ public class NoticeDAOTest extends TestDefaultSet{
 			double d = r.nextDouble();
 			int num = (int)(d*1000);
 			d = num/100.0;
-			noticeDTO.setNoticeTitle("testTitle"+i);
-			noticeDTO.setNoticeDetail("testDetail"+d);
-			noticeDTO.setNoticeWriter("testWriter"+i);
+			noticeDTO.setTitle("testTitle"+i);
+			noticeDTO.setContents("testContents"+d);
+			noticeDTO.setWriter("testWriter"+i);
 			int result = noticeDAO.setNoticeAdd(noticeDTO);
 //			assertNotEquals(0, result);
 		}
@@ -49,10 +49,10 @@ public class NoticeDAOTest extends TestDefaultSet{
 //	@Test
 	public void setNoticeUpdateTest() throws Exception{
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNoticeNum(6L);
-		noticeDTO.setNoticeTitle("modi6title");
-		noticeDTO.setNoticeDetail("modi6detail");
-		noticeDTO.setNoticeWriter("modi6writer");
+		noticeDTO.setNum(6L);
+		noticeDTO.setTitle("modi6title");
+		noticeDTO.setContents("modi6detail");
+		noticeDTO.setWriter("modi6writer");
 		int result = noticeDAO.setNoticeUpdate(noticeDTO);
 		assertNotEquals(0, result);
 	}
@@ -60,7 +60,7 @@ public class NoticeDAOTest extends TestDefaultSet{
 //	@Test
 	public void setNoticeDeleteTest() throws Exception{
 		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setNoticeNum(6L);
+		noticeDTO.setNum(6L);
 		int result = noticeDAO.setNoticeDelete(noticeDTO);
 		assertNotEquals(0, result);
 	}

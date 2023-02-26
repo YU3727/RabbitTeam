@@ -4,9 +4,9 @@ public class NoticeFileDTO {
 
 	//업로드 파일 정보를 저장하기 위한 DTO
 	private Long fileNum;
-	private Long noticeNum;
+	private Long num;
 	private String fileName;
-	private String originalName;
+	private String oriName;
 	
 	public NoticeFileDTO() {
 		
@@ -20,12 +20,12 @@ public class NoticeFileDTO {
 		this.fileNum = fileNum;
 	}
 
-	public Long getNoticeNum() {
-		return noticeNum;
+	public Long getNum() {
+		return num;
 	}
 
-	public void setNoticeNum(Long noticeNum) {
-		this.noticeNum = noticeNum;
+	public void setNum(Long num) {
+		this.num = num;
 	}
 
 	public String getFileName() {
@@ -36,12 +36,12 @@ public class NoticeFileDTO {
 		this.fileName = fileName;
 	}
 
-	public String getOriginalName() {
-		return originalName;
+	public String getOriName() {
+		return oriName;
 	}
 
-	public void setOriginalName(String originalName) {
-		this.originalName = originalName;
+	public void setOriName(String oriName) {
+		this.oriName = oriName;
 	}
 	
 }

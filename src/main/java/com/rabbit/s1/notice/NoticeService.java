@@ -39,7 +39,7 @@ public class NoticeService {
 	public int setNoticeAdd(NoticeDTO noticeDTO, MultipartFile file) throws Exception{
 		int result = noticeDAO.setNoticeAdd(noticeDTO);
 		//저장메서드를 실행한 DTO의 noticeNum 알아오기(여기에 파일저장했다고 데이터 넣으려고)
-		noticeDTO.getNoticeNum();
+		noticeDTO.getNum();
 		
 		//file이 존재 하지 않는경우에 에러 발생. 이것을 피하기 위해서 조건문 사용
 		if(!file.isEmpty()) {
@@ -55,9 +55,9 @@ public class NoticeService {
 		//2. file의 저장 정보를 DB에 저장.(실제 파일이 아닌 파일을 특정지을 수 있는 파일 이름 + 기준 noticeDTO)
 		NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 		noticeFileDTO.setFileName(fileName);
-		noticeFileDTO.setOriginalName(file.getOriginalFilename());
+		noticeFileDTO.setOriName(file.getOriginalFilename());
 		//add mapper에 selectkey를 통해 noticeNum 미리 받아오고 그걸 fileDTO에 참조값으로 넣음
-		noticeFileDTO.setNoticeNum(noticeDTO.getNoticeNum());
+		noticeFileDTO.setNum(noticeDTO.getNum());
 		
 		//DB에 file정보(DTO) 저장
 		result = noticeDAO.setNoticeFileAdd(noticeFileDTO);

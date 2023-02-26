@@ -4,20 +4,66 @@ import java.sql.Date;
 
 public class NoticeDTO {
 
-	private Long noticeNum;
-	private String noticeTitle;
-	private String noticeDetail;
-	private String noticeWriter;
-	private Date noticeDate;
-	private Long noticeHits;
+	private Long num;
+	private String title;
+	private String contents;
+	private String writer;
+	private Date regDate;
+	private Long hit;
 	//Notice는 첨부파일을 가진다.(has관계)
 	private NoticeFileDTO noticeFileDTO;
 	
 	public NoticeDTO() {
 		
 	}
-	
-	
+
+	public Long getNum() {
+		return num;
+	}
+
+	public void setNum(Long num) {
+		this.num = num;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public Date getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+
+	public Long getHit() {
+		return hit;
+	}
+
+	public void setHit(Long hit) {
+		this.hit = hit;
+	}
 
 	public NoticeFileDTO getNoticeFileDTO() {
 		return noticeFileDTO;
@@ -25,54 +71,6 @@ public class NoticeDTO {
 
 	public void setNoticeFileDTO(NoticeFileDTO noticeFileDTO) {
 		this.noticeFileDTO = noticeFileDTO;
-	}
-
-	public Long getNoticeNum() {
-		return noticeNum;
-	}
-
-	public void setNoticeNum(Long noticeNum) {
-		this.noticeNum = noticeNum;
-	}
-
-	public String getNoticeTitle() {
-		return noticeTitle;
-	}
-
-	public void setNoticeTitle(String noticeTitle) {
-		this.noticeTitle = noticeTitle;
-	}
-
-	public String getNoticeDetail() {
-		return noticeDetail;
-	}
-
-	public void setNoticeDetail(String noticeDetail) {
-		this.noticeDetail = noticeDetail;
-	}
-
-	public String getNoticeWriter() {
-		return noticeWriter;
-	}
-
-	public void setNoticeWriter(String noticeWriter) {
-		this.noticeWriter = noticeWriter;
-	}
-
-	public Date getNoticeDate() {
-		return noticeDate;
-	}
-
-	public void setNoticeDate(Date noticeDate) {
-		this.noticeDate = noticeDate;
-	}
-
-	public Long getNoticeHits() {
-		return noticeHits;
-	}
-
-	public void setNoticeHits(Long noticeHits) {
-		this.noticeHits = noticeHits;
 	}
 	
 }
