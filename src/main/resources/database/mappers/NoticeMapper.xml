@@ -73,7 +73,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO NOTICE(NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT)
-		VALUES(#{num}, #{Title}, #{contents}, #{writer}, sysdate, 0)
+		VALUES(#{num}, #{title}, #{contents}, #{writer}, sysdate, 0)
 	</insert>
 	
 	<update id="setNoticeUpdate" parameterType="NoticeDTO">
