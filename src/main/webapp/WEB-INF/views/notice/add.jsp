@@ -14,15 +14,15 @@
 	
 	<form action="./add" method="post" enctype="multipart/form-data">
 		<label for="title">글제목</label>
-		<input type="text" name="noticeTitle" id="title" placeholder="글제목을 입력하세요">
+		<input type="text" name="title" id="title" placeholder="글제목을 입력하세요">
 		<br>
 		
 		<label for="writer">작성자</label>
-		<input type="text" name="noticeWriter" id="writer" placeholder="작성자를 입력하세요">
+		<input type="text" name="writer" id="writer" placeholder="작성자를 입력하세요">
 		<br>
 	
-		<label for="detail">글내용</label>
-		<textarea rows="12" cols="20" name="noticeDetail" id="detail"></textarea>
+		<label for="contents">글내용</label>
+		<textarea rows="12" cols="20" name="contents" id="contents"></textarea>
 		<br>
 		<!-- <input type="text" name="noticeDetail" id="detail" placeholder="글내용을 입력하세요"> -->
 		
