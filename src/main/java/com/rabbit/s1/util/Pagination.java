@@ -10,7 +10,7 @@ public class Pagination {
 	private Long startRow;
 	private Long lastRow;
 	
-	//총페이지 개수, 블럭 계산을 위한 한 블럭당 출력할 번호 개수
+	//총페이지 개수, 블럭 계산을 위한 한 블럭당 출력할 페이지수
 	private Long totalPage;
 	private Long perBlock;
 	
